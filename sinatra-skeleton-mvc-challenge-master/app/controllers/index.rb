@@ -47,11 +47,12 @@ end
 put '/user/edit' do
     @user = User.find(session[:user_id])
     @user.update(params[:user])
-
-    redirect '/user'
-    # content_type :json
-    # @user.to_json
-
+  # if xhr?
+    content_type :json
+    @user.to_json #the response that goes to json...
+  # else
+    # redirect '/user'
+  # end
 end
 
 get '/user/edit' do
